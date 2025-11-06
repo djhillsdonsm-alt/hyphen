@@ -1,971 +1,533 @@
-Look at https://www.hyphenstrategiesllc.com/case-study-land-development. I want to merge the two pages (Case Study - Land Development & Report Highlights) into one page.
-
-1. I like the overall look of the Report Highlights page better.
-2. Start with the Header from the first page (Case Study: The 400+ ...) and its background. Next should be the executive summary and methodology sections from the second page. Next should be the interactive analysis from the first page. Next the Strategic Blueprint from the first page.
-
-Generate new code that accomplishes what I want to see.
-
-Code from the first page:
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confidential Land Strategy Case Study</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fira+Sans:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #F8F9FA;
-            color: #212529;
-            scroll-behavior: smooth;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Fira Sans', sans-serif;
-            color: #087a8c;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
-        }
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-                max-height: 350px;
-            }
-        }
-        .section-header {
-            border-bottom: 2px solid #087a8c;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-            overflow: hidden; /* <-- FIX 1: Prevents content from spilling out */
-        }
-        .tab-button {
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-            color: #4a5568;
-        }
-        .tab-button.active,
-        .tab-button:hover {
-            color: #087a8c;
-            border-bottom-color: #087a8c;
-        }
-        .tab-button.active {
-            font-weight: 700;
-        }
-        .tab-pane {
-            display: none;
-        }
-        .tab-pane.active {
-            display: block;
-        }
-        .process-step-icon {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            background-color: #087a8c;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-family: 'Fira Sans', sans-serif;
-            flex-shrink: 0;
-        }
-        .text-accent-orange { color: #f08721; }
-        .text-accent-green { color: #4a8c03; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidential Land Strategy Case Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fira+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F8F9FA;
+            color: #212529;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fira Sans', sans-serif;
+            color: #087a8c;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+        .section-header {
+            border-bottom: 2px solid #087a8c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            overflow: hidden; /* <-- FIX 1: Prevents content from spilling out */
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            color: #4a5568;
+        }
+        .tab-button.active,
+        .tab-button:hover {
+            color: #087a8c;
+            border-bottom-color: #087a8c;
+        }
+        .tab-button.active {
+            font-weight: 700;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .process-step-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #087a8c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-family: 'Fira Sans', sans-serif;
+            flex-shrink: 0;
+        }
+        .text-accent-orange { color: #f08721; }
+        .text-accent-green { color: #4a8c03; }
+    </style>
 </head>
 <body class="antialiased">
 
-    <header class="relative bg-gray-800 text-white overflow-hidden">
-        <img src="https://i.imgur.com/7WaZcyR.png" 
-             alt="Aerial view of large industrial site" 
-             onerror="this.src='https://placehold.co/1200x400/ccc/999?text=Image+Not+Found';"
-             class="absolute inset-0 w-full h-full object-cover opacity-30">
-        <div class="relative container mx-auto px-6 py-24 md:py-32 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-white" style="color: #fff;">Case Study: The 400+ Acre Challenge</h1>
-            <p class="mt-4 text-xl md:text-2xl" style="color: #a3ccd4;">Transforming an undeveloped site into a high-value, shovel-ready asset.</p>
-            <p class="mt-2 text-lg text-gray-300 max-w-2xl mx-auto">A confidential look at our strategic process for a major Midwest regional economic development corporation.</p>
-        </div>
-    </header>
+    <header class="relative bg-gray-800 text-white overflow-hidden">
+        <img src="https://i.imgur.com/7WaZcyR.png" 
+             alt="Aerial view of large industrial site" 
+             onerror="this.src='https://placehold.co/1200x400/ccc/999?text=Image+Not+Found';"
+             class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <div class="relative container mx-auto px-6 py-24 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white" style="color: #fff;">Case Study: The 400+ Acre Challenge</h1>
+            <p class="mt-4 text-xl md:text-2xl" style="color: #a3ccd4;">Transforming an undeveloped site into a high-value, shovel-ready asset.</p>
+            <p class="mt-2 text-lg text-gray-300 max-w-2xl mx-auto">A confidential look at our strategic process for a major Midwest regional economic development corporation.</p>
+        </div>
+    </header>
 
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-12">
 
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-10 section-header">Our Proven Methodology</h2>
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10 section-header">Our Proven Methodology</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <div class="card h-full">
-                    <div class="flex flex-col h-full">
-                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">1</div>
-                            <h3 class="text-xl font-semibold ml-4">Data Collection & Analysis</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm flex-grow">We began by aggregating all critical data: physical site analysis, utility access, environmental factors, zoning, and regional economic & labor market trends.</p>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="card h-full">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">1</div>
+                            <h3 class="text-xl font-semibold ml-4">Data Collection & Analysis</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow">We began by aggregating all critical data: physical site analysis, utility access, environmental factors, zoning, and regional economic & labor market trends.</p>
+                    </div>
+                </div>
 
-                <div class="card h-full">
-                    <div class="flex flex-col h-full">
-                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">2</div>
-                            <h3 class="text-xl font-semibold ml-4">Scenario Development</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm flex-grow">Based on the data, we developed 3-5 realistic development scenarios, identifying high-potential target industries that aligned with the site's unique assets.</p>
-                    </div>
-                </div>
+                <div class="card h-full">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">2</div>
+                            <h3 class="text-xl font-semibold ml-4">Scenario Development</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow">Based on the data, we developed 3-5 realistic development scenarios, identifying high-potential target industries that aligned with the site's unique assets.</p>
+                    </div>
+                </div>
 
-                <div class="card h-full">
-                    <div class="flex flex-col h-full">
-                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">3</div>
-                            <h3 class="text-xl font-semibold ml-4">Financial Modeling & SWOT</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm flex-grow">Each scenario was stress-tested with financial models, ROI projections, and a comprehensive SWOT analysis to quantify opportunities and mitigate risks.</p>
-                    </div>
-                </div>
+                <div class="card h-full">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">3</div>
+                            <h3 class="text-xl font-semibold ml-4">Financial Modeling & SWOT</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow">Each scenario was stress-tested with financial models, ROI projections, and a comprehensive SWOT analysis to quantify opportunities and mitigate risks.</p>
+                    </div>
+                </div>
 
-                <div class="card h-full">
-                    <div class="flex flex-col h-full">
-                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">4</div>
-                            <h3 class="text-xl font-semibold ml-4">Strategic Recommendation</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm flex-grow">We delivered a single, actionable recommendation for the highest and best use, complete with a phasing plan and marketing strategy.</p>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
+                <div class="card h-full">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-start mb-3 min-h-[6rem]"> <div class="process-step-icon">4</div>
+                            <h3 class="text-xl font-semibold ml-4">Strategic Recommendation</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm flex-grow">We delivered a single, actionable recommendation for the highest and best use, complete with a phasing plan and marketing strategy.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
 
-        <section class="mb-16 card overflow-hidden">
-            <h2 class="text-3xl font-bold text-center mb-10 section-header">Interactive Analysis: The Data-Driven Decision</h2>
-            <p class="text-center text-gray-700 mb-8 -mt-4">Our recommendation wasn't a guess. It was the result of deep, interconnected analysis. Click to explore the key data pillars that shaped our strategy.</p>
-            
-            <div class="flex flex-wrap justify-center border-b border-gray-300 mb-8">
-                <button class="tab-button active py-4 px-6 text-lg font-semibold" data-target="#pane-site">Site & Logistics</button>
-                <button class="tab-button py-4 px-6 text-lg font-semibold" data-target="#pane-market">Market & Labor</button>
-                <button class="tab-button py-4 px-6 text-lg font-semibold" data-target="#pane-swot">SWOT Analysis</button>
-                <button class="tab-button py-4 px-6 text-lg font-semibold" data-target="#pane-industry">Industry Scoring</button>
-            </div>
+        <section class="mb-16 card overflow-hidden">
+            <h2 class="text-3xl font-bold text-center mb-10 section-header">Interactive Analysis: The Data-Driven Decision</h2>
+            <p class="text-center text-gray-700 mb-8 -mt-4">Our recommendation wasn't a guess. It was the result of deep, interconnected analysis. Click to explore the key data pillars that shaped our strategy.</p>
+            
+            <div class="flex flex-wrap justify-center border-b border-gray-300 mb-8">
+                <button class="tab-button active py-4 px-6 text-lg font-semibold" data-target="#pane-site">Site & Logistics</button>
+                <button class="tab-button py-4 px-6 text-lg font-semibold" data-target="#pane-market">Market & Labor</button>
+                <button class="tab-button py-4 px-6 text-lg font-semibold" data-target="#pane-swot">SWOT Analysis</button>
+                <button class="tab-button py-4 px-6 text-lg font-semibold" data-target="#pane-industry">Industry Scoring</button>
+            </div>
 
-            <div class="mt-8">
-                <div id="pane-site" class="tab-pane active p-4">
-                    <h3 class="text-2xl font-semibold text-center mb-6">Site & Logistics: A Foundation for Growth</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h4 class="text-xl font-semibold mb-3">Site Characteristics</h4>
-                            <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li><strong>Size:</strong> 400+ contiguous acres</li>
-                                <li><strong>Topography:</strong> Relatively flat, highly developable</li>
-                                <li><strong>Zoning:</strong> Zoned agricultural, requiring strategic rezoning (identified as a key action)</li>
-                                <li><strong>Utilities:</strong> Strong water & wastewater capacity nearby. Identified a 36-month lead time for a new high-capacity electrical substation, making it a critical path item.</li>
-                            </ul>
-                            <h4 class="text-xl font-semibold mt-6 mb-3">Logistics Access</h4>
-                             <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li><strong>Highway:</strong> Excellent access to major interstates (I-96, I-69) via US-127.</li>
-                                <li><strong>Rail:</strong> Rail line adjacent to the site, presenting a major asset for industries requiring bulk shipping.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <img src="https://i.imgur.com/wIrquGa.png" 
-                                 alt="Digital map of site infrastructure and access" 
-                                 onerror="this.src='https://placehold.co/600x400/ccc/999?text=Image+Not+Found';"
-                                 class="rounded-lg shadow-lg w-full h-auto object-cover">
-                            <p class="text-center text-sm text-gray-600 mt-2">Example visual analysis of a site's strategic access to power, fiber, and rail.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="mt-8">
+                <div id="pane-site" class="tab-pane active p-4">
+                    <h3 class="text-2xl font-semibold text-center mb-6">Site & Logistics: A Foundation for Growth</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-3">Site Characteristics</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Size:</strong> 400+ contiguous acres</li>
+                                <li><strong>Topography:</strong> Relatively flat, highly developable</li>
+                                <li><strong>Zoning:</strong> Zoned agricultural, requiring strategic rezoning (identified as a key action)</li>
+                                <li><strong>Utilities:</strong> Strong water & wastewater capacity nearby. Identified a 36-month lead time for a new high-capacity electrical substation, making it a critical path item.</li>
+                            </ul>
+                            <h4 class="text-xl font-semibold mt-6 mb-3">Logistics Access</h4>
+                             <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Highway:</strong> Excellent access to major interstates (I-96, I-69) via US-127.</li>
+                                <li><strong>Rail:</strong> Rail line adjacent to the site, presenting a major asset for industries requiring bulk shipping.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img src="https://i.imgur.com/wIrquGa.png" 
+                                 alt="Digital map of site infrastructure and access" 
+                                 onerror="this.src='https://placehold.co/600x400/ccc/999?text=Image+Not+Found';"
+                                 class="rounded-lg shadow-lg w-full h-auto object-cover">
+                            <p class="text-center text-sm text-gray-600 mt-2">Example visual analysis of a site's strategic access to power, fiber, and rail.</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div id="pane-market" class="tab-pane p-4">
-                    <h3 class="text-2xl font-semibold text-center mb-6">Market & Labor: A Region Ready for Investment</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="flex flex-col">
-                            <h4 class="text-xl font-semibold text-center mb-4">Metro Area Industrial Vacancy Trend</h4>
-                            <p class="text-gray-600 text-sm mb-4">Analysis showed consistent stability and low vacancy, indicating healthy, sustained demand. This signaled a prime opportunity for new, high-quality industrial space to be absorbed quickly.</p>
-                            <div class="chart-container flex-grow">
-                                <canvas id="vacancyChart"></canvas>
-                            </div>
-                        </div>
-                         <div class="flex flex-col">
-                            <h4 class="text-xl font-semibold text-center mb-4">Comparative Industrial Rental Rates</h4>
-                            <p class="text-gray-600 text-sm mb-4">The site's local market boasts competitive rental rates. While slightly below the broader market average, this represents a significant cost advantage for attracting new businesses, a key lever for marketing.</p>
-                            <div class="chart-container flex-grow">
-                                <canvas id="rentChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-8 pt-8 border-t">
-                        <h4 class="text-xl font-semibold text-center mb-4">Workforce Analysis: Skilled & Ready</h4>
-                        <div class="flex flex-wrap justify-around text-center gap-6">
-                            <div>
-                                <div class="text-5xl font-bold text-accent-orange">15%</div>
-                                <div class="text-lg mt-2 text-gray-700">of workforce in Manufacturing</div>
-                            </div>
-                            <div>
-                                <div class="text-5xl font-bold text-accent-green">40%+</div>
-                                <div class="text-lg mt-2 text-gray-700">of residents hold a Bachelor's Degree</div>
-                            </div>
-                            <div>
-                                <div class="text-5xl font-bold" style="color: #087a8c;">180K+</div>
-                                <div class="text-lg mt-2 text-gray-700">Skilled Labor Force in Region</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="pane-market" class="tab-pane p-4">
+                    <h3 class="text-2xl font-semibold text-center mb-6">Market & Labor: A Region Ready for Investment</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="flex flex-col">
+                            <h4 class="text-xl font-semibold text-center mb-4">Metro Area Industrial Vacancy Trend</h4>
+                            <p class="text-gray-600 text-sm mb-4">Analysis showed consistent stability and low vacancy, indicating healthy, sustained demand. This signaled a prime opportunity for new, high-quality industrial space to be absorbed quickly.</p>
+                            <div class="chart-container flex-grow">
+                                <canvas id="vacancyChart"></canvas>
+                            </div>
+                        </div>
+                         <div class="flex flex-col">
+                            <h4 class="text-xl font-semibold text-center mb-4">Comparative Industrial Rental Rates</h4>
+                            <p class="text-gray-600 text-sm mb-4">The site's local market boasts competitive rental rates. While slightly below the broader market average, this represents a significant cost advantage for attracting new businesses, a key lever for marketing.</p>
+                            <div class="chart-container flex-grow">
+                                <canvas id="rentChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t">
+                        <h4 class="text-xl font-semibold text-center mb-4">Workforce Analysis: Skilled & Ready</h4>
+                        <div class="flex flex-wrap justify-around text-center gap-6">
+                            <div>
+                                <div class="text-5xl font-bold text-accent-orange">15%</div>
+                                <div class="text-lg mt-2 text-gray-700">of workforce in Manufacturing</div>
+                            </div>
+                            <div>
+                                <div class="text-5xl font-bold text-accent-green">40%+</div>
+                                <div class="text-lg mt-2 text-gray-700">of residents hold a Bachelor's Degree</div>
+                            </div>
+                            <div>
+                                <div class="text-5xl font-bold" style="color: #087a8c;">180K+</div>
+                                <div class="text-lg mt-2 text-gray-700">Skilled Labor Force in Region</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div id="pane-swot" class="tab-pane p-4">
-                    <h3 class="text-2xl font-semibold text-center mb-6">SWOT Analysis: A Balanced View</h3>
-                    <p class="text-center text-gray-600 text-sm mb-6">A comprehensive SWOT analysis provided a 360-degree view of the site's competitive position, forming the foundation of our strategy.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="swot-quadrant p-6 rounded-lg" style="background-color: #e6f3d9; color: #3b6f02;">
-                            <h5 class="font-bold text-2xl mb-2" style="color: #4a8c03;">Strengths</h5>
-                            <ul class="list-disc list-inside text-sm space-y-1">
-                                <li>400+ Contiguous Acres</li>
-                                <li>Excellent Highway & Rail Access</li>
-                                <li>Strong Utility Access</li>
-                                <li>Supportive Municipality</li>
-                                <li>Skilled Manufacturing Workforce</li>
-                            </ul>
-                        </div>
-                        <div class="swot-quadrant bg-red-100 text-red-800 p-6 rounded-lg">
-                            <h5 class="font-bold text-2xl mb-2 text-red-600">Weaknesses</h5>
-                            <ul class="list-disc list-inside text-sm space-y-1">
-                                <li>Lacks "Shovel-Ready" Status</li>
-                                <li>Requires Rezoning from Agricultural</li>
-                                <li>36-Month Lead Time for Power Substation</li>
-                                <li>Significant Upfront Infrastructure Cost</li>
-                            </ul>
-                        </div>
-                        <div class="swot-quadrant p-6 rounded-lg" style="background-color: #daf0f5; color: #065e6e;">
-                            <h5 class="font-bold text-2xl mb-2" style="color: #087a8c;">Opportunities</h5>
-                            <ul class="list-disc list-inside text-sm space-y-1">
-                                <li>Capture High-Tech/EV Manufacturing</li>
-                                <li>Become a Regional Logistics Hub</li>
-                                <li>Leverage State-Level Incentives</li>
-                                <li>Develop a Phased Industrial Campus</li>
-                            </ul>
-                        </div>
-                        <div class="swot-quadrant p-6 rounded-lg" style="background-color: #fef3e2; color: #c06c19;">
-                            <h5 class="font-bold text-2xl mb-2" style="color: #f08721;">Threats</h5>
-                            <ul class="list-disc list-inside text-sm space-y-1">
-                                <li>Competing Local & Regional Sites</li>
-                                <li>Rising Construction Costs</li>
-                                <li>Economic/Interest Rate Fluctuations</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="pane-industry" class="tab-pane p-4">
-                    <h3 class="text-2xl font-semibold text-center mb-6">Industry Scoring: Identifying the Best Fit</h3>
-                     <p class="text-gray-600 text-sm mb-6 max-w-3xl mx-auto text-center">
-                        We developed a scoring model to prioritize industries against key success factors. Advanced Manufacturing emerged as the premier target, with high-demand Logistics and high-value Life Sciences as strong secondary targets.
-                    </p>
-                    <div class="chart-container">
-                        <canvas id="industryChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <div id="pane-swot" class="tab-pane p-4">
+                    <h3 class="text-2xl font-semibold text-center mb-6">SWOT Analysis: A Balanced View</h3>
+                    <p class="text-center text-gray-600 text-sm mb-6">A comprehensive SWOT analysis provided a 360-degree view of the site's competitive position, forming the foundation of our strategy.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="swot-quadrant p-6 rounded-lg" style="background-color: #e6f3d9; color: #3b6f02;">
+                            <h5 class="font-bold text-2xl mb-2" style="color: #4a8c03;">Strengths</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>400+ Contiguous Acres</li>
+                                <li>Excellent Highway & Rail Access</li>
+                                <li>Strong Utility Access</li>
+                                <li>Supportive Municipality</li>
+                                <li>Skilled Manufacturing Workforce</li>
+                            </ul>
+                        </div>
+                        <div class="swot-quadrant bg-red-100 text-red-800 p-6 rounded-lg">
+                            <h5 class="font-bold text-2xl mb-2 text-red-600">Weaknesses</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>Lacks "Shovel-Ready" Status</li>
+                                <li>Requires Rezoning from Agricultural</li>
+                                <li>36-Month Lead Time for Power Substation</li>
+                                <li>Significant Upfront Infrastructure Cost</li>
+                            </ul>
+                        </div>
+                        <div class="swot-quadrant p-6 rounded-lg" style="background-color: #daf0f5; color: #065e6e;">
+                            <h5 class="font-bold text-2xl mb-2" style="color: #087a8c;">Opportunities</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>Capture High-Tech/EV Manufacturing</li>
+                                <li>Become a Regional Logistics Hub</li>
+                                <li>Leverage State-Level Incentives</li>
+                                <li>Develop a Phased Industrial Campus</li>
+                            </ul>
+                        </div>
+                        <div class="swot-quadrant p-6 rounded-lg" style="background-color: #fef3e2; color: #c06c19;">
+                            <h5 class="font-bold text-2xl mb-2" style="color: #f08721;">Threats</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>Competing Local & Regional Sites</li>
+                                <li>Rising Construction Costs</li>
+                                <li>Economic/Interest Rate Fluctuations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="pane-industry" class="tab-pane p-4">
+                    <h3 class="text-2xl font-semibold text-center mb-6">Industry Scoring: Identifying the Best Fit</h3>
+                     <p class="text-gray-600 text-sm mb-6 max-w-3xl mx-auto text-center">
+                        We developed a scoring model to prioritize industries against key success factors. Advanced Manufacturing emerged as the premier target, with high-demand Logistics and high-value Life Sciences as strong secondary targets.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="industryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-        <section class="mb-12 overflow-hidden">
-            <h2 class="text-3xl font-bold text-center mb-10 section-header">The Strategic Blueprint: Our Recommendation</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card h-full">
-                    <img src="https://www.sustainable-bus.com/wp-content/uploads/2024/06/SK-Official-rendering-of-the-Ivancsa-plant-courtesy-of-SK-Innovation-1.jpeg" 
-                         alt="Render of a modern advanced manufacturing facility" 
-                         onerror="this.src='https://placehold.co/600x450/ccc/999?text=Image+Not+Found';"
-                         class="rounded-lg shadow-lg w-full h-auto object-cover mb-6">
-                    <h3 class="text-2xl font-semibold mb-4">Highest & Best Use: EV Battery Component Manufacturing</h3>
-                    <p class="text-gray-700 mb-4">The integrated analysis pointed conclusively to high-tech, advanced manufacturing as the optimal use. We recommended a specific focus on **EV Battery Component Manufacturing** to leverage the state's automotive heritage and the site's unique assets (rail, power potential, size).</p>
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div class="p-4 bg-gray-100 rounded-lg">
-                            <div class="text-3xl font-bold" style="color: #087a8c;">$500M - $1B</div>
-                            <div class="text-gray-600">Potential Capital Investment</div>
-                        </div>
-                        <div class="p-4 bg-gray-100 rounded-lg">
-                            <div class="text-3xl font-bold" style="color: #087a8c;">1,000 - 2,000</div>
-                            <div class="text-gray-600">High-Wage Jobs</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card h-full">
-                    <h3 class="text-2xl font-semibold text-center mb-4">Key Strategic Actions</h3>
-                    <ul class="list-disc list-inside space-y-3 text-gray-700 mb-8">
-                        <li>
-                            <span class="font-semibold text-gray-900">Prioritize "Shovel-Ready" Status:</span> Immediately begin the rezoning process and engineering for the electrical substation to de-risk the site for investors.
-                        </li>
-                        <li>
-                            <span class="font-semibold text-gray-900">Target Advanced Manufacturing:</span> Focus all marketing and incentive packages on EV/mobility and advanced manufacturing sectors.
-                        </li>
-                        <li>
-                            <span class="font-semibold text-gray-900">Develop Phased Infrastructure:</span> Build out site infrastructure in logical phases aligned with the first anchor tenants to conserve capital.
-                        </li>
-                        <li>
-                            <span class="font-semibold text-gray-900">Leverage Blended Finance:</span> Actively pursue public grants and local incentives to prepare the site and make it vastly more attractive for private investment.
-                        </li>
-                    </ul>
-                    
-                    <h4 class="text-xl font-semibold text-center mb-4">Recommended Funding & Incentive Mix</h4>
-                    <p class="text-gray-600 text-sm mb-4 text-center">A blended financial strategy is essential to de-risk the project and attract private capital.</p>
-                    <div class="chart-container">
-                        <canvas id="fundingChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        <section class="mb-12 overflow-hidden">
+            <h2 class="text-3xl font-bold text-center mb-10 section-header">The Strategic Blueprint: Our Recommendation</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card h-full">
+                    <img src="https://www.sustainable-bus.com/wp-content/uploads/2024/06/SK-Official-rendering-of-the-Ivancsa-plant-courtesy-of-SK-Innovation-1.jpeg" 
+                         alt="Render of a modern advanced manufacturing facility" 
+                         onerror="this.src='https://placehold.co/600x450/ccc/999?text=Image+Not+Found';"
+                         class="rounded-lg shadow-lg w-full h-auto object-cover mb-6">
+                    <h3 class="text-2xl font-semibold mb-4">Highest & Best Use: EV Battery Component Manufacturing</h3>
+                    <p class="text-gray-700 mb-4">The integrated analysis pointed conclusively to high-tech, advanced manufacturing as the optimal use. We recommended a specific focus on **EV Battery Component Manufacturing** to leverage the state's automotive heritage and the site's unique assets (rail, power potential, size).</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <div class="text-3xl font-bold" style="color: #087a8c;">$500M - $1B</div>
+                            <div class="text-gray-600">Potential Capital Investment</div>
+                        </div>
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <div class="text-3xl font-bold" style="color: #087a8c;">1,000 - 2,000</div>
+                            <div class="text-gray-600">High-Wage Jobs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card h-full">
+                    <h3 class="text-2xl font-semibold text-center mb-4">Key Strategic Actions</h3>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 mb-8">
+                        <li>
+                            <span class="font-semibold text-gray-900">Prioritize "Shovel-Ready" Status:</span> Immediately begin the rezoning process and engineering for the electrical substation to de-risk the site for investors.
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Target Advanced Manufacturing:</span> Focus all marketing and incentive packages on EV/mobility and advanced manufacturing sectors.
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Develop Phased Infrastructure:</span> Build out site infrastructure in logical phases aligned with the first anchor tenants to conserve capital.
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Leverage Blended Finance:</span> Actively pursue public grants and local incentives to prepare the site and make it vastly more attractive for private investment.
+                        </li>
+                    </ul>
+                    
+                    <h4 class="text-xl font-semibold text-center mb-4">Recommended Funding & Incentive Mix</h4>
+                    <p class="text-gray-600 text-sm mb-4 text-center">A blended financial strategy is essential to de-risk the project and attract private capital.</p>
+                    <div class="chart-container">
+                        <canvas id="fundingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer class="text-center py-10" style="background-color: #087a8c; color: #a3ccd4;">
-        <h2 class="text-3xl font-bold text-white mb-4" style="color: #fff;">Let's Discuss Your Site's Potential</h2>
-        <p class="mb-6">We specialize in data-driven strategies for complex land development challenges.</p>
-        <p class="text-gray-300 text-sm">Confidential Case Study. For discussion purposes only.</p>
-    </footer>
+    <footer class="text-center py-10" style="background-color: #087a8c; color: #a3ccd4;">
+        <h2 class="text-3xl font-bold text-white mb-4" style="color: #fff;">Let's Discuss Your Site's Potential</h2>
+        <p class="mb-6">We specialize in data-driven strategies for complex land development challenges.</p>
+        <p class="text-gray-300 text-sm">Confidential Case Study. For discussion purposes only.</p>
+    </footer>
 
-    <script>
-        (function() {
-            // --- Chart Colors & Options ---
-            const chartColors = {
-                primary: '#087a8c',
-                secondary: '#f08721',
-                tertiary: '#4a8c03',
-                highlight: '#a3ccd4',
-                grid: 'rgba(0, 0, 0, 0.05)',
-                text: '#087a8c'
-            };
+    <script>
+        (function() {
+            // --- Chart Colors & Options ---
+            const chartColors = {
+                primary: '#087a8c',
+                secondary: '#f08721',
+                tertiary: '#4a8c03',
+                highlight: '#a3ccd4',
+                grid: 'rgba(0, 0, 0, 0.05)',
+                text: '#087a8c'
+            };
 
-            const defaultTooltipCallback = {
-                title: function(tooltipItems) {
-                    const item = tooltipItems[0];
-                    let label = item.chart.data.labels[item.dataIndex];
-                    if (Array.isArray(label)) {
-                        return label.join(' ');
-                    } else {
-                        return label;
-                    }
-                }
-            };
+            const defaultTooltipCallback = {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            };
 
-            const defaultOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: chartColors.text,
-                            font: { family: 'Cairo' }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: defaultTooltipCallback,
-                        bodyFont: { family: 'Cairo' },
-                        titleFont: { family: 'Cairo' }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: { color: chartColors.text, font: { family: 'Cairo' } },
-                        grid: { color: chartColors.grid }
-                    },
-                    y: {
-                        ticks: { color: chartColors.text, font: { family: 'Cairo' } },
-                        grid: { color: chartColors.grid }
-                    }
-                }
-            };
-            
-            // --- Chart 1: Vacancy ---
-            if (document.getElementById('vacancyChart')) {
-                const ctx = document.getElementById('vacancyChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['2020', '2021', '2022', '2023', '2024'],
-                        datasets: [{
-                            label: 'Metro Area Vacancy Rate',
-                            data: [5.2, 5.0, 4.8, 4.9, 4.7],
-                            borderColor: chartColors.primary,
-                            backgroundColor: 'rgba(8, 122, 140, 0.1)',
-                            fill: true,
-                            tension: 0.1
-                        }]
-                    },
-                    options: { ...defaultOptions }
-                });
-            }
+            const defaultOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: chartColors.text,
+                            font: { family: 'Cairo' }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: defaultTooltipCallback,
+                        bodyFont: { family: 'Cairo' },
+                        titleFont: { family: 'Cairo' }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: chartColors.text, font: { family: 'Cairo' } },
+                        grid: { color: chartColors.grid }
+                    },
+                    y: {
+                        ticks: { color: chartColors.text, font: { family: 'Cairo' } },
+                        grid: { color: chartColors.grid }
+                    }
+                }
+            };
+            
+            // --- Chart 1: Vacancy ---
+            if (document.getElementById('vacancyChart')) {
+                const ctx = document.getElementById('vacancyChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: 'Metro Area Vacancy Rate',
+                            data: [5.2, 5.0, 4.8, 4.9, 4.7],
+                            borderColor: chartColors.primary,
+                            backgroundColor: 'rgba(8, 122, 140, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        }]
+                    },
+                    options: { ...defaultOptions }
+                });
+            }
 
-            // --- Chart 2: Rent ---
-            if (document.getElementById('rentChart')) {
-                const ctx = document.getElementById('rentChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Local Market', ['Comparable', 'Market Avg.'], 'State Avg.'],
-                        datasets: [{
-                            label: 'Avg. Industrial Rent (NNN)',
-                            data: [7.50, 8.25, 8.10],
-                            backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary],
-                            borderColor: '#fff',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        plugins: {
-                            ...defaultOptions.plugins,
-                            legend: { display: false }
-                        }
-                    }
-                });
-            }
+            // --- Chart 2: Rent ---
+            if (document.getElementById('rentChart')) {
+                const ctx = document.getElementById('rentChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Local Market', ['Comparable', 'Market Avg.'], 'State Avg.'],
+                        datasets: [{
+                            label: 'Avg. Industrial Rent (NNN)',
+                            data: [7.50, 8.25, 8.10],
+                            backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary],
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
 
-            // --- Chart 3: Industry Scoring ---
-            if (document.getElementById('industryChart')) {
-                const ctx = document.getElementById('industryChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: ['Market Demand', 'Workforce', 'Infrastructure', 'Logistics', 'Incentive Match'],
-                        datasets: [{
-                            label: 'Advanced Mfg.',
-                            data: [9, 9, 8, 7, 9],
-                            borderColor: chartColors.primary,
-                            backgroundColor: 'rgba(8, 122, 140, 0.2)',
-                            pointBackgroundColor: chartColors.primary
-                        }, {
-                            label: 'Logistics',
-                            data: [8, 7, 9, 10, 6],
-                            borderColor: chartColors.secondary,
-                            backgroundColor: 'rgba(240, 135, 33, 0.2)',
-                            pointBackgroundColor: chartColors.secondary
-                        }, {
-                            label: 'Life Sciences',
-                            data: [7, 8, 7, 6, 8],
-                            borderColor: chartColors.tertiary,
-                            backgroundColor: 'rgba(74, 140, 3, 0.2)',
-                            pointBackgroundColor: chartColors.tertiary
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        scales: {
-                            r: {
-                                beginAtZero: true,
-                                max: 10,
-                                ticks: {
-                                    backdropColor: 'transparent',
-                                    color: chartColors.text,
-                                    font: { family: 'Cairo' }
-                                },
-                                grid: { color: chartColors.grid },
-                                pointLabels: {
-                                    color: chartColors.text,
-                                    font: { family: 'Cairo', size: 12 }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
+            // --- Chart 3: Industry Scoring ---
+            if (document.getElementById('industryChart')) {
+                const ctx = document.getElementById('industryChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Market Demand', 'Workforce', 'Infrastructure', 'Logistics', 'Incentive Match'],
+                        datasets: [{
+                            label: 'Advanced Mfg.',
+                            data: [9, 9, 8, 7, 9],
+                            borderColor: chartColors.primary,
+                            backgroundColor: 'rgba(8, 122, 140, 0.2)',
+                            pointBackgroundColor: chartColors.primary
+                        }, {
+                            label: 'Logistics',
+                            data: [8, 7, 9, 10, 6],
+                            borderColor: chartColors.secondary,
+                            backgroundColor: 'rgba(240, 135, 33, 0.2)',
+                            pointBackgroundColor: chartColors.secondary
+                        }, {
+                            label: 'Life Sciences',
+                            data: [7, 8, 7, 6, 8],
+                            borderColor: chartColors.tertiary,
+                            backgroundColor: 'rgba(74, 140, 3, 0.2)',
+                            pointBackgroundColor: chartColors.tertiary
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 10,
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: chartColors.text,
+                                    font: { family: 'Cairo' }
+                                },
+                                grid: { color: chartColors.grid },
+                                pointLabels: {
+                                    color: chartColors.text,
+                                    font: { family: 'Cairo', size: 12 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
 
-            // --- Chart 4: Funding ---
-            if (document.getElementById('fundingChart')) {
-                const ctx = document.getElementById('fundingChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Public Grants', 'Local Incentives', 'Private Investment', 'Partnerships'],
-                        datasets: [{
-                            data: [30, 25, 35, 10],
-                            backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary, chartColors.highlight],
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        plugins: {
-                            ...defaultOptions.plugins,
-                            legend: {
-                                ...defaultOptions.plugins.legend,
-                                position: 'bottom'
-                            }
-                        },
-                        scales: {
-                            x: { display: false },
-                            y: { display: false }
-                        }
-                    }
-                });
-            }
+            // --- Chart 4: Funding ---
+            if (document.getElementById('fundingChart')) {
+                const ctx = document.getElementById('fundingChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Public Grants', 'Local Incentives', 'Private Investment', 'Partnerships'],
+                        datasets: [{
+                            data: [30, 25, 35, 10],
+                            backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary, chartColors.highlight],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            legend: {
+                                ...defaultOptions.plugins.legend,
+                                position: 'bottom'
+                            }
+                        },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
 
-            // --- Tabbed Interface Logic ---
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const contentPanes = document.querySelectorAll('.tab-pane');
+            // --- Tabbed Interface Logic ---
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const contentPanes = document.querySelectorAll('.tab-pane');
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const target = button.getAttribute('data-target');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.getAttribute('data-target');
 
-                    // Update button active state
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
+                    // Update button active state
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
 
-                    // Update content pane visibility
-                    contentPanes.forEach(pane => {
-                        if (pane.id === target.substring(1)) {
-                            pane.classList.add('active');
-                        } else {
-                            pane.classList.remove('active');
-                        }
-                    });
-                });
-            });
+                    // Update content pane visibility
+                    contentPanes.forEach(pane => {
+                        if (pane.id === target.substring(1)) {
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.remove('active');
+                        }
+                    });
+                });
+            });
 
-        })();
-    </script>
-</body>
-</html>
-
-Code from the second page:
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confidential Development Strategy Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Fira+Sans:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #F8F9FA;
-            color: #212529;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        
-        header {
-            background-color: #a3ccd4;
-        }
-        header h1 {
-            color: #087a8c;
-        }
-        h1, h2, h3, h4, h5 {
-            font-family: 'Fira Sans', sans-serif;
-            color: #087a8c;
-        }
-        .card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-        }
-        .section-header {
-            border-bottom: 2px solid #087a8c;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .swot-quadrant {
-            border-radius: 0.5rem;
-            padding: 1rem;
-        }
-        .text-accent-green {
-            color: #4a8c03;
-        }
-        .text-accent-orange {
-            color: #f08721;
-        }
-        .stat-card {
-            background-color: #087a8c;
-            color: white;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-        }
-        footer {
-            border-top: 1px solid #087a8c;
-        }
-    </style>
-</head>
-<body class="antialiased">
-
-    <header class="shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <h1 class="text-3xl font-bold">Confidential Development Strategy Report</h1>
-            <p class="text-lg text-gray-700">Analysis & Recommendations for a 400+ Acre Industrial Site</p>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-6 py-12">
-
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold section-header">01. Executive Summary</h2>
-            <p class="text-gray-700 mb-6">
-                This report provides a comprehensive analysis of the development potential for a 400+ acre industrial site located in a major Midwest metro area. Based on a rigorous analysis of the site, regional economy, and market trends, we have identified optimal target industries and formulated a strategic blueprint to guide development, investment, and marketing efforts.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="stat-card">
-                    <div class="text-5xl font-bold text-accent-orange">400+</div>
-                    <div class="text-xl mt-2">Contiguous Acres</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-5xl font-bold text-accent-orange">180,000+</div>
-                    <div class="text-xl mt-2">Skilled Labor Force</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-5xl font-bold text-accent-orange">Top 3</div>
-                    <div class="text-xl mt-2">Target Industries Identified</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold section-header">02. Methodology</h2>
-            <p class="text-gray-700 mb-6">
-                Our recommendation is the result of a 4-phase strategic analysis process, ensuring a data-driven foundation for all findings.
-            </p>
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 md:space-x-4">
-                <div class="card text-center w-full md:w-1/4">
-                    <h4 class="text-lg font-semibold mb-2 text-accent-green">Phase 1</h4>
-                    <h5 class="text-xl font-semibold mb-2">Data & Site Analysis</h5>
-                    <p class="text-gray-600 text-sm">Aggregated all site-specific, market, and demographic data. Assessed physical characteristics, utilities, and zoning.</p>
-                </div>
-                <div class="card text-center w-full md:w-1/4">
-                    <h4 class="text-lg font-semibold mb-2 text-accent-green">Phase 2</h4>
-                    <h5 class="text-xl font-semibold mb-2">Market & Industry Suitability</h5>
-                    <p class="text-gray-600 text-sm">Analyzed regional market trends, workforce availability, and logistics infrastructure to identify high-potential industries.</p>
-                </div>
-                <div class="card text-center w-full md:w-1/4">
-                    <h4 class="text-lg font-semibold mb-2 text-accent-green">Phase 3</h4>
-                    <h5 class="text-xl font-semibold mb-2">Financial Modeling & SWOT</h5>
-                    <p class="text-gray-600 text-sm">Developed cost-benefit models and a comprehensive SWOT analysis to quantify opportunities and mitigate risks.</p>
-                </div>
-                <div class="card text-center w-full md:w-1/4">
-                    <h4 class="text-lg font-semibold mb-2 text-accent-green">Phase 4</h4>
-                    <h5 class="text-xl font-semibold mb-2">Strategic Recommendation</h5>
-                    <p class="text-gray-600 text-sm">Delivered a final, actionable report with target industries, phasing plans, and marketing strategies.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold section-header">03. Site & SWOT Analysis</h2>
-            <p class="text-gray-700 mb-6">
-                A comprehensive SWOT analysis was conducted to provide a 360-degree view of the site's competitive position, forming the foundation of our strategic recommendations.
-            </p>
-            <div class="card">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="swot-quadrant bg-green-100 text-green-800">
-                        <h5 class="font-bold text-lg mb-2">Strengths</h5>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            <li>400+ Contiguous Acres</li>
-                            <li>Excellent Highway Access</li>
-                            <li>Strong Utility Access</li>
-                            <li>Supportive Municipality</li>
-                        </ul>
-                    </div>
-                    <div class="swot-quadrant bg-red-100 text-red-800">
-                        <h5 class="font-bold text-lg mb-2">Weaknesses</h5>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            <li>Lacks "Shovel-Ready" Status</li>
-                            <li>Environmental Mitigations</li>
-                            <li>Significant Upfront Cost</li>
-                        </ul>
-                    </div>
-                    <div class="swot-quadrant bg-blue-100 text-blue-800">
-                        <h5 class="font-bold text-lg mb-2">Opportunities</h5>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            <li>Capture High-Tech Mfg.</li>
-                            <li>Advanced Manufacturing Hub</li>
-                            <li>Regional Logistics Demand</li>
-                            <li>State-Level Incentives</li>
-                        </ul>
-                    </div>
-                    <div class="swot-quadrant bg-yellow-100 text-yellow-800">
-                        <h5 class="font-bold text-lg mb-2">Threats</h5>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            <li>Competing Local/Regional Sites</li>
-                            <li>Rising Construction Costs</li>
-                            <li>Economic/Interest Rate Shift</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold section-header">04. Economic & Market Analysis</h2>
-            <p class="text-gray-700 mb-6">
-                The strategy is grounded in a deep analysis of the regional economic and real estate landscape to identify a clear, competitive position for the site.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card">
-                    <h4 class="text-xl font-semibold text-center mb-4">Metro Area Industrial Vacancy Trend</h4>
-                    <p class="text-gray-600 text-sm mb-4">Analysis of the metro-area industrial market showed consistent stability and low vacancy, indicating healthy, sustained demand. This signals a prime opportunity for new, high-quality industrial space to be absorbed quickly.</p>
-                    <div class="chart-container">
-                        <canvas id="vacancyChart"></canvas>
-                    </div>
-                </div>
-                <div class="card">
-                    <h4 class="text-xl font-semibold text-center mb-4">Comparative Industrial Rental Rates</h4>
-                    <p class="text-gray-600 text-sm mb-4">The site's local market boasts competitive rental rates. While slightly below the broader market average, this represents a significant cost advantage for attracting new businesses, a key lever for marketing.</p>
-                    <div class="chart-container">
-                        <canvas id="rentChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold section-header">05. Industry Suitability Analysis</h2>
-            <p class="text-gray-700 mb-6">
-                We developed a scoring model to identify and prioritize the exact industries that align perfectly with the site's assets (infrastructure, workforce) and market opportunities (demand, logistics).
-            </p>
-            <div class="card">
-                <h4 class="text-xl font-semibold text-center mb-4">Target Industry Suitability Matrix</h4>
-                <p class="text-gray-600 text-sm mb-4 max-w-3xl mx-auto text-center">
-                    The model scored potential industries against key success factors. Advanced Manufacturing emerged as the premier target, with high-demand Logistics and high-value Food Processing as strong secondary targets.
-                </p>
-                <div class="chart-container">
-                    <canvas id="industryChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold section-header">06. Strategic Recommendations</h2>
-            <p class="text-gray-700 mb-6">
-                Based on the complete analysis, we provided a clear, actionable blueprint for development, financing, and marketing.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card">
-                    <h4 class="text-xl font-semibold text-center mb-4">Key Recommendations</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>
-                            <span class="font-semibold text-gray-900">Prioritize "Shovel-Ready" Status:</span> Initiate pre-development work (zoning, environmental) to mitigate risk and reduce timelines for end-users.
-                        </li>
-                        <li>
-                            <span class="font-semibold text-gray-900">Target Advanced Manufacturing:</span> Focus marketing and incentive packages on advanced manufacturing, EV/mobility, and related high-tech sectors.
-                        </li>
-                        <li>
-                            <span class="font-semibold text-gray-900">Develop Phased Infrastructure:</span> Build out site infrastructure in logical phases aligned with the first anchor tenants to conserve capital.
-                        </li>
-                        <li>
-                            <span class="font-semibold text-gray-900">Leverage Blended Finance:</span> Actively pursue public grants and local incentives to de-risk the project and attract private capital.
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h4 class="text-xl font-semibold text-center mb-4">Recommended Funding & Incentive Mix</h4>
-                    <p class="text-gray-600 text-sm mb-4">To de-risk the project and attract private capital, we recommended a blended financial strategy, leveraging public funds to prepare the site and make it vastly more attractive for private investment.</p>
-                    <div class="chart-container">
-                        <canvas id="fundingChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="text-center py-6 mt-12">
-        <p class="text-gray-500 text-sm">Confidential Development Strategy Report. For discussion purposes only.</p>
-    </footer>
-
-    <script>
-        (function() {
-            const chartColors = {
-                primary: '#087a8c',
-                secondary: '#f08721',
-                tertiary: '#4a8c03',
-                highlight: '#a3ccd4',
-                grid: 'rgba(0, 0, 0, 0.05)',
-                text: '#087a8c'
-            };
-
-            const defaultTooltipCallback = {
-                title: function(tooltipItems) {
-                    const item = tooltipItems[0];
-                    let label = item.chart.data.labels[item.dataIndex];
-                    if (Array.isArray(label)) {
-                        return label.join(' ');
-                    } else {
-                        return label;
-                    }
-                }
-            };
-
-            const defaultOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: chartColors.text
-                        }
-                    },
-                    tooltip: {
-                        callbacks: defaultTooltipCallback
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: { color: chartColors.text },
-                        grid: { color: chartColors.grid }
-                    },
-                    y: {
-                        ticks: { color: chartColors.text },
-                        grid: { color: chartColors.grid }
-                    }
-                }
-            };
-
-            if (document.getElementById('vacancyChart')) {
-                const ctx = document.getElementById('vacancyChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['2020', '2021', '2022', '2023', '2024'],
-                        datasets: [{
-                            label: 'Metro Area Vacancy Rate',
-                            data: [5.2, 5.0, 4.8, 4.9, 4.7],
-                            borderColor: chartColors.primary,
-                            backgroundColor: 'rgba(8, 122, 140, 0.1)',
-                            fill: true,
-                            tension: 0.1
-                        }]
-                    },
-                    options: { ...defaultOptions }
-                });
-            }
-
-            if (document.getElementById('rentChart')) {
-                const ctx = document.getElementById('rentChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Local Market', ['Comparable', 'Market Avg.'], 'State Avg.'],
-                        datasets: [{
-                            label: 'Avg. Industrial Rent (NNN)',
-                            data: [7.50, 8.25, 8.10],
-                            backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary],
-                            borderColor: '#fff',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: { callbacks: defaultTooltipCallback }
-                        }
-                    }
-                });
-            }
-
-            if (document.getElementById('industryChart')) {
-                const ctx = document.getElementById('industryChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: ['Market Demand', 'Workforce', 'Infrastructure', 'Logistics', 'Incentive Match'],
-                        datasets: [{
-                            label: 'Advanced Mfg.',
-                            data: [9, 9, 8, 7, 9],
-                            borderColor: chartColors.primary,
-                            backgroundColor: 'rgba(8, 122, 140, 0.2)',
-                            pointBackgroundColor: chartColors.primary
-                        }, {
-                            label: 'Logistics',
-                            data: [8, 7, 9, 10, 6],
-                            borderColor: chartColors.secondary,
-                            backgroundColor: 'rgba(240, 135, 33, 0.2)',
-                            pointBackgroundColor: chartColors.secondary
-                        }, {
-                            label: 'Food Processing',
-                            data: [6, 8, 7, 6, 8],
-                            borderColor: chartColors.tertiary,
-                            backgroundColor: 'rgba(74, 140, 3, 0.2)',
-                            pointBackgroundColor: chartColors.tertiary
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        scales: {
-                            r: {
-                                beginAtZero: true,
-                                max: 10,
-                                ticks: {
-                                    backdropColor: 'transparent',
-                                    color: chartColors.text
-                                },
-                                grid: { color: chartColors.grid },
-                                pointLabels: {
-                                    color: chartColors.text
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            if (document.getElementById('fundingChart')) {
-                const ctx = document.getElementById('fundingChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Public Grants', 'Local Incentives', 'Private Investment', 'Partnerships'],
-                        datasets: [{
-                            data: [30, 25, 35, 10],
-                            backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary, chartColors.highlight],
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        ...defaultOptions,
-                        plugins: {
-                            ...defaultOptions.plugins,
-                            legend: {
-                                ...defaultOptions.plugins.legend,
-                                position: 'bottom'
-                            }
-                        },
-                        scales: {
-                            x: { display: false },
-                            y: { display: false }
-                        }
-                    }
-                });
-            }
-        })();
-    </script>
+        })();
+    </script>
 </body>
 </html>
